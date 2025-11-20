@@ -64,33 +64,35 @@ namespace FSM_Challenge
 
         static EnemyState ProcessState(EnemyState state)
         {
-            // TODO: Use rand in the switch statement to determine transitions
             double rand = random.NextDouble();
 
             switch (state)
             {
                 case EnemyState.Idle:
-                    //TODO: transition to other states based on rand
-                    //HINT: you can also return EnemyState.Idle sometimes to add more variation
-                    
-                    return EnemyState.Shooting;
+
+                    if(rand < 0.1d) return EnemyState.Idle;
+                    else if(rand < 0.2d) return EnemyState.Shooting;
+                    else if (rand < 0.3d) return EnemyState.WalkingRandomly;
+                    else return EnemyState.WalkingInLine
 
                 case EnemyState.Shooting:
+
                     Shoot();
-                    // note: there is a Shoot method ready for use! 
+
+                    
                     
                     return EnemyState.WalkingRandomly;
                 case EnemyState.WalkingRandomly:
-                    //TODO: move up, down, left or right randomly
+                    
 
                     return EnemyState.WalkingInLine;       
                 case EnemyState.WalkingInLine:
-                    //TODO: move player in direction they previously moved.
-                    //HINT: there is a lastEnemyPos variable that tells you the previous position!
+                    
+                    
 
                     return EnemyState.Idle;
                 default:
-                    return EnemyState.Idle; // this case should never happen
+                    return EnemyState.Idle;
             }
 
         }
